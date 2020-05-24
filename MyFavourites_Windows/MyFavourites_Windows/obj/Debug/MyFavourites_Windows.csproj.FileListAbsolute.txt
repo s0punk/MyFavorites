@@ -1,0 +1,10 @@
+C:\Users\Sopunkrock1984-PC\source\repos\MyFavourites_Windows\MyFavourites_Windows\bin\Debug\MyFavourites_Windows.exe.config
+C:\Users\Sopunkrock1984-PC\source\repos\MyFavourites_Windows\MyFavourites_Windows\bin\Debug\MyFavourites_Windows.exe
+C:\Users\Sopunkrock1984-PC\source\repos\MyFavourites_Windows\MyFavourites_Windows\bin\Debug\MyFavourites_Windows.pdb
+C:\Users\Sopunkrock1984-PC\source\repos\MyFavourites_Windows\MyFavourites_Windows\obj\Debug\MyFavourites_Windows.csprojAssemblyReference.cache
+C:\Users\Sopunkrock1984-PC\source\repos\MyFavourites_Windows\MyFavourites_Windows\obj\Debug\MyFavourites_Windows.mfStartPage.resources
+C:\Users\Sopunkrock1984-PC\source\repos\MyFavourites_Windows\MyFavourites_Windows\obj\Debug\MyFavourites_Windows.Properties.Resources.resources
+C:\Users\Sopunkrock1984-PC\source\repos\MyFavourites_Windows\MyFavourites_Windows\obj\Debug\MyFavourites_Windows.csproj.GenerateResource.cache
+C:\Users\Sopunkrock1984-PC\source\repos\MyFavourites_Windows\MyFavourites_Windows\obj\Debug\MyFavourites_Windows.csproj.CoreCompileInputs.cache
+C:\Users\Sopunkrock1984-PC\source\repos\MyFavourites_Windows\MyFavourites_Windows\obj\Debug\MyFavourites_Windows.exe
+C:\Users\Sopunkrock1984-PC\source\repos\MyFavourites_Windows\MyFavourites_Windows\obj\Debug\MyFavourites_Windows.pdb

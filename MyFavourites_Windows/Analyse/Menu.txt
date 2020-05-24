@@ -1,0 +1,29 @@
+Prévisions des menus nécessaires (MyFavourites):
+
+Fichier :		Nouvelle -> Playlist
+				Ouvrir -> Playlist	
+				Modifier -> Playlist
+				Page Démarrage
+				Enregistrer
+				Enregistrer Sous
+				Imprimer
+				Quitter
+				
+				
+Édition :		 Annuler
+				Copier
+				Couper
+				Coller
+				
+				
+Settings : 		Langue
+				Fenetre
+				Ouvrir au démarrage
+				
+
+Help : 			(Ouvrir une fenêtre avec onglets)
+				Qu'est que MyFavourites ?
+				Comment ça marche ?
+				
+				
+Support :		Tip on paypal
