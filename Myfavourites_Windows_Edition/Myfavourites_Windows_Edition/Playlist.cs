@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace MyFavourites_Windows {
+namespace Myfavourites_Windows_Edition {
     public class Playlist {
         private int id;
         private string name;
@@ -15,7 +15,7 @@ namespace MyFavourites_Windows {
             steamGames = new List<SteamGame>();
             webPages = new List<WebPage>();
 
-            id = mfStartPage.window.getPlaylistsNum();
+            //id = mfStartPage.window.getPlaylistsNum();
             id++;
             name = "New Playlist (" + id + ")";
 

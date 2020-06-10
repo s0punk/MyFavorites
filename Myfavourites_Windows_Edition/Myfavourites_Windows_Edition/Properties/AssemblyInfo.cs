@@ -1,15 +1,17 @@
 ﻿using System.Reflection;
+using System.Resources;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
+using System.Windows;
 
 // Les informations générales relatives à un assembly dépendent de
 // l'ensemble d'attributs suivant. Changez les valeurs de ces attributs pour modifier les informations
 // associées à un assembly.
-[assembly: AssemblyTitle("MyFavourites_Windows")]
+[assembly: AssemblyTitle("Myfavourites_Windows_Edition")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("MyFavourites_Windows")]
+[assembly: AssemblyProduct("Myfavourites_Windows_Edition")]
 [assembly: AssemblyCopyright("Copyright ©  2020")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -19,8 +21,25 @@ using System.Runtime.InteropServices;
 // COM, affectez la valeur true à l'attribut ComVisible sur ce type.
 [assembly: ComVisible(false)]
 
-// Le GUID suivant est pour l'ID de la typelib si ce projet est exposé à COM
-[assembly: Guid("1e7d8f67-ab15-4fd7-95b5-779eff078c13")]
+//Pour commencer à générer des applications localisables, définissez
+//<UICulture>CultureUtiliséePourCoder</UICulture> dans votre fichier .csproj
+//dans <PropertyGroup>.  Par exemple, si vous utilisez le français
+//dans vos fichiers sources, définissez <UICulture> à fr-FR. Puis, supprimez les marques de commentaire de
+//l'attribut NeutralResourceLanguage ci-dessous. Mettez à jour "fr-FR" dans
+//la ligne ci-après pour qu'elle corresponde au paramètre UICulture du fichier projet.
+
+//[assembly: NeutralResourcesLanguage("en-US", UltimateResourceFallbackLocation.Satellite)]
+
+
+[assembly: ThemeInfo(
+    ResourceDictionaryLocation.None, //où se trouvent les dictionnaires de ressources spécifiques à un thème
+                                     //(utilisé si une ressource est introuvable dans la page,
+                                     // ou dictionnaires de ressources de l'application)
+    ResourceDictionaryLocation.SourceAssembly //où se trouve le dictionnaire de ressources générique
+                                              //(utilisé si une ressource est introuvable dans la page,
+                                              // dans l'application ou dans l'un des dictionnaires de ressources spécifiques à un thème)
+)]
+
 
 // Les informations de version pour un assembly se composent des quatre valeurs suivantes :
 //

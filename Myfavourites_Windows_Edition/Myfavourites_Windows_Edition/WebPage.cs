@@ -1,5 +1,5 @@
-﻿namespace MyFavourites_Windows {
-    public class WebPage : App {
+﻿namespace Myfavourites_Windows_Edition {
+    public class WebPage : SystemApplication {
         private string url;
 
         public WebPage(string urlValue, string nameValue) : base(nameValue) {

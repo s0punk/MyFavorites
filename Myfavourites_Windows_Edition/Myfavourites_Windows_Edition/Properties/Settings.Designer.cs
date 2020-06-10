@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace MyFavourites_Windows.Properties {
+namespace Myfavourites_Windows_Edition.Properties {
 
 
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
