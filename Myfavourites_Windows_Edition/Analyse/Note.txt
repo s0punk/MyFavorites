@@ -1,0 +1,3 @@
+Launch a steam game: ex: E:\Games\Steam\Steam.exe -applaunch 123456
+
+error window tuto: https://www.easytutoriel.com/creer-message-erreur-windows-vbs.html
