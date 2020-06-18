@@ -1,8 +1,26 @@
 To Do:
+	
+Start-Page
+	Image de fond: Logo un peu plus gris, positionner vers la droite de l'écran
+	(environ 1/4 du logo dépasse intentionnellement ver la droite) -> Photoshop le logo original
 
-Bouton menu fonctionnel
 
-Page d'accueil
+Any unsave work will be lost pop-up warning
+
+Find another way to use pop-up (Directly within the program instead of an external app)
+
+play button : make green
+
+logo: delete background
+
+
+New Playlist Page:
+
+	Options de filter (App, WebPage, Date d'ajout (newest, oldest)) -> dropDown Menu
+	Contenu playlist (en dessous new App, meme alignement)
+		Type (app, web) Nom app/webpage (dropDown menu ? textbox ?) bouton pour ouvrir gestionnaire dossier + bouton ...
+
+	
 
 
 

@@ -5,6 +5,7 @@ using System.Windows.Controls;
 
 namespace BeautySolutions.View.ViewModel {
     public class ItemMenu {
+
         public ItemMenu(string header, UserControl screen, PackIconKind icon) {
             Header = header;
             Screen = screen;
