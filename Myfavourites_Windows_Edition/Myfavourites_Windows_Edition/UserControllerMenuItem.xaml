@@ -12,7 +12,7 @@
             <ListView x:Name="ListViewMenu" ItemsSource="{Binding Path=Buttons}" Foreground="White" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <TextBlock Text="{Binding Path=Content}" Padding="20 5" FontSize="14" FontFamily="Candara"/>
+                        <TextBlock Text="{Binding Path=Content}" Padding="20 5" FontSize="14" FontFamily="Candara" PreviewMouseDown="EventManager"/>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>

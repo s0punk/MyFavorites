@@ -1,7 +1,9 @@
-Si 1 ou plusieurs playlists est exécuter et qu'une application se trouve dans les deux playlist -> demander si on veut lancer l'application 1 seule fois. Ajouter parametre
+﻿Si 1 ou plusieurs playlists est exécuter et qu'une application se trouve dans les deux playlist -> demander si on veut lancer l'application 1 seule fois. Ajouter parametre
 
-Ajouter application : Faire écrire le nom et défiler les application qui ont les memes lettres dans le memes ordre + bouton pour explorateur de fichier.
 
-ajouter un icone pour chaque app en recherchant sur internet name + icon et prendre le premier résultat
-https://www.codeproject.com/Articles/11876/An-API-for-Google-Image-Search
-https://www.youtube.com/watch?v=2y7O-NcV2E4
+First time use: check with user if he wants to add any.
+ When browsing for apps, add selected file to the list file
+
+deal with apps that have been deleted
+
+save a playlist as a .mfplay

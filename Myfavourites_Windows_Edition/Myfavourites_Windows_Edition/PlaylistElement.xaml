@@ -1,0 +1,19 @@
+<UserControl
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" x:Class="Myfavourites_Windows_Edition.PlaylistElement" 
+             mc:Ignorable="d" >
+    <Grid Width="1501" Height="56">
+        <materialDesign:PackIcon Kind="{Binding Path=Icone}" HorizontalAlignment="Left" Margin="0,7,0,0" VerticalAlignment="Top" Height="46" Width="73"/>
+        <TextBox HorizontalAlignment="Left" Height="35" Margin="102,11,0,0" TextWrapping="Wrap" Text="{Binding Path=ElementName}" VerticalAlignment="Top" Width="248" FontFamily="Candara" FontSize="22"/>
+        <materialDesign:PackIcon Kind="Gear" HorizontalAlignment="Left" Margin="1048,7,0,0" VerticalAlignment="Top" Height="46" Width="74"/>
+        <materialDesign:PackIcon Kind="TrashCan" HorizontalAlignment="Left" Margin="1168,7,0,0" VerticalAlignment="Top" Height="46" Width="74" PreviewMouseDown="Trash_Click"/>
+        <!-- For Applications-->
+        <ComboBox x:Name="apps" HorizontalAlignment="Left" Margin="630,11,0,0" VerticalAlignment="Top" Width="280" Height="35"/>
+        <materialDesign:PackIcon x:Name="folder" Kind="Folder" HorizontalAlignment="Left" Margin="915,7,0,0" VerticalAlignment="Top" Height="46" Width="73" PreviewMouseDown="File_Click"/>
+        <!-- For Web Pages -->
+        <TextBox x:Name="urlBox" HorizontalAlignment="Left" Height="36" Margin="630,11,0,0" TextWrapping="Wrap" Text="Page's URL" VerticalAlignment="Top" Width="280" FontFamily="Candara" FontSize="22"/>
+    </Grid>
+</UserControl>

@@ -1,8 +1,17 @@
 Launch a steam game: ex: E:\Games\Steam\Steam.exe -applaunch 123456
 
-error window tuto: https://www.easytutoriel.com/creer-message-erreur-windows-vbs.html
-
 Dashboard = List des playlists existantes.
 
-Click sur une playlist amène à une page différente qui ne peut pas être accédée autrement
+Click sur une playlist amène à une page différente qui ne peut pas être accédée autrement (playlistPage)
+
+
+create shortcuts function:
+
+private static List<RoutedCommand> shortCuts = new List<RoutedCommand>();
+
+private void CreateShortCut(int index, int key, int modifier1, int modifier2, ExecutedRoutedEventHandler handler) {
+            shortCuts.Add(new RoutedCommand());
+            shortCuts[index].InputGestures.Add(new KeyGesture((Key)key, (ModifierKeys)modifier1 | (ModifierKeys)modifier2));
+            CommandBindings.Add(new CommandBinding(shortCuts[index], handler));
+        }
 

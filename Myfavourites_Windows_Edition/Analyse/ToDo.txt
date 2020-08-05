@@ -1,24 +1,21 @@
 To Do:
-	
-Start-Page
-	Image de fond: Logo un peu plus gris, positionner vers la droite de l'écran
-	(environ 1/4 du logo dépasse intentionnellement ver la droite) -> Photoshop le logo original
+	Warnings situations:
+		if url not valid and trying to save warn.
+		warn if trying to exit playlist editor without saving.
 
 
-Any unsave work will be lost pop-up warning
-
-Find another way to use pop-up (Directly within the program instead of an external app)
-
-play button : make green
-
-logo: delete background
+	new xaml class for playlist' element menu (gear icon)
 
 
-New Playlist Page:
 
-	Options de filter (App, WebPage, Date d'ajout (newest, oldest)) -> dropDown Menu
-	Contenu playlist (en dessous new App, meme alignement)
-		Type (app, web) Nom app/webpage (dropDown menu ? textbox ?) bouton pour ouvrir gestionnaire dossier + bouton ...
+
+	first time use: load apps and save in file (Binary file that will have info such as: Langage, theme, is this first time use, and other info (nb playlist, detected app)
+
+	menu option that let you: see the apps that we detected, delete apps from MyFavorites, add apps to MyFavorites
+
+
+
+
 
 	
 

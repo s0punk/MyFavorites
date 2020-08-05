@@ -3,11 +3,14 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
         Title="My Favourites" Height="450" Width="800" WindowState="Maximized"
         Icon="/Assets/logo.ico">
+    <Window.Background>
+        <ImageBrush ImageSource="/Assets/App_Background.png"/>
+    </Window.Background>
+
 
     <!-- Menu rétractable-->
     <Window.Resources>
@@ -24,7 +27,7 @@
             </DoubleAnimationUsingKeyFrames>
         </Storyboard>
         <Style x:Key="RoundShapedBtn" TargetType="{x:Type Button}">
-            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="BorderThickness" Value="0"/>
             <Setter Property="Padding" Value="16"/>
             <Setter Property="HorizontalContentAlignment" Value="Center"/>
             <Setter Property="VerticalContentAlignment" Value="Center"/>
@@ -34,7 +37,7 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Button}">
-                        <Border x:Name="border" Background="Transparent" CornerRadius="50">
+                        <Border x:Name="border" Background="White" CornerRadius="50">
                             <materialDesign:Ripple ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" Focusable="False" Feedback="{TemplateBinding Foreground}" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" Padding="{TemplateBinding Padding}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"/>
                         </Border>
                         <ControlTemplate.Triggers>
@@ -42,8 +45,8 @@
                                 <Setter Property="Opacity" Value="0.56"/>
                             </Trigger>
                             <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="BorderBrush" TargetName="border" Value="White"/>
-                                <Setter Property="Background" TargetName="border" Value="White"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="GhostWhite"/>
+                                <Setter Property="Background" TargetName="border" Value="GhostWhite"/>
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
@@ -109,30 +112,30 @@
                    FontFamily="Candara" Margin="35.4,190,0,0" Grid.Column="1"/>
         <TextBlock x:Name="startPage_text2" HorizontalAlignment="Left" Grid.Row="1" Text="Continue your Work" VerticalAlignment="Top" Height="44" Width="275" FontSize="32"
                    FontFamily="Candara" Margin="35.4,390,0,-54" Grid.Column="1"/>
-        <TextBlock x:Name="startPage_linkNewPlaylist" Text="Create a new Playlist" TextDecorations="Underline" Grid.Column="1" HorizontalAlignment="Left" Margin="90.4,237,0,0" Grid.Row="1" VerticalAlignment="Top" RenderTransformOrigin="0.397,2.895"/>
-        <TextBlock x:Name="startPage_linkLoadPlaylist" Text="Load a Playlist" TextDecorations="Underline" Grid.Column="1" HorizontalAlignment="Left" Margin="90.4,434,0,-69.2" Grid.Row="1" VerticalAlignment="Top" RenderTransformOrigin="0.397,2.895"/>
-        <TextBlock x:Name="startPage_linkImportPlaylist" Text="Import a Playlist" TextDecorations="Underline" Grid.Column="1" HorizontalAlignment="Left" Margin="90.4,258,0,0" Grid.Row="1" VerticalAlignment="Top" RenderTransformOrigin="0.397,2.895"/>
+        <TextBlock x:Name="startPage_linkNewPlaylist" Text="Create a new Playlist" TextDecorations="Underline" Grid.Column="1" HorizontalAlignment="Left" Margin="90.4,237,0,0" Grid.Row="1" VerticalAlignment="Top" RenderTransformOrigin="0.397,2.895" FontFamily="Candara" FontSize="15"/>
+        <TextBlock x:Name="startPage_linkLoadPlaylist" Text="Load a Playlist" TextDecorations="Underline" Grid.Column="1" HorizontalAlignment="Left" Margin="90.4,434,0,-69.2" Grid.Row="1" VerticalAlignment="Top" RenderTransformOrigin="0.397,2.895" FontFamily="Candara" FontSize="15"/>
+        <TextBlock x:Name="startPage_linkImportPlaylist" Text="Import a Playlist" TextDecorations="Underline" Grid.Column="1" HorizontalAlignment="Left" Margin="90.4,258,0,0" Grid.Row="1" VerticalAlignment="Top" RenderTransformOrigin="0.397,2.895" FontFamily="Candara" FontSize="15"/>
 
-        <!-- New Playlist Page -->
-        <TextBox HorizontalAlignment="Left" Height="49" Margin="9.4,19,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Playlist's Name" VerticalAlignment="Top" Width="347" FontSize="32" FontFamily="Candara" Grid.Column="1" KeyUp="TextBox_KeyUp"/>
-        <CheckBox Content="Run on Startup" FontSize="20" FontFamily="Candara" Grid.Column="1" HorizontalAlignment="Right" Margin="0,38,28.6,0" Grid.Row="1" VerticalAlignment="Top"/>
-        <Button Grid.Column="1" HorizontalAlignment="Right" Margin="0,10,215.6,0" VerticalAlignment="Top" Width="90" Background="White" Height="87" BorderThickness="0" Style="{DynamicResource RoundShapedBtn}" Grid.Row="1">
-            <Image Source="/Assets/play_button.png"/>
+        <!-- Playlist Page -->
+        <TextBox x:Name="newPlaylist_name" HorizontalAlignment="Left" Height="49" Margin="9,34,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Playlist's Name" VerticalAlignment="Top" Width="347" FontSize="32" FontFamily="Candara" Grid.Column="1" KeyUp="TextBox_KeyUp"/>
+        <CheckBox x:Name="newPlaylist_checkbox" Content="Run on Startup" FontSize="20" FontFamily="Candara" Grid.Column="1" HorizontalAlignment="Right" Margin="0,47,31,0" Grid.Row="1" VerticalAlignment="Top"/>
+        <Button x:Name="newPlaylist_play" Grid.Column="1" HorizontalAlignment="Right" Margin="0,10,205,0" VerticalAlignment="Top" Width="101" Background="White" Height="105" Style="{DynamicResource RoundShapedBtn}" Grid.Row="1">
+            <Image Source="/Assets/play_button.png" Height="77" Width="67"/>
         </Button>
-        <Button Content="New Application" Grid.Column="1" HorizontalAlignment="Left" Margin="9.4,120,0,0" Grid.Row="1" VerticalAlignment="Top" Width="156" FontFamily="Candara" FontSize="18"/>
-        <Button Content="New Web Page" Grid.Column="1" HorizontalAlignment="Left" Margin="215.4,120,0,0" Grid.Row="1" VerticalAlignment="Top" Width="156" FontFamily="Candara" FontSize="18"/>
-        <TextBlock Grid.Column="1" HorizontalAlignment="Left" Margin="10.4,170,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Filters:" VerticalAlignment="Top" FontSize="16" FontFamily="Candara"/>
-        <ComboBox Grid.Column="1" HorizontalAlignment="Left" Margin="78.4,190,0,0" Grid.Row="1" VerticalAlignment="Top" Width="120">
+        <Button x:Name="newPlaylist_newApp" Content="New Application" Grid.Column="1" HorizontalAlignment="Left" Margin="9,130,0,0" Grid.Row="1" VerticalAlignment="Top" Width="156" FontFamily="Candara" FontSize="18" Click="NewPlaylist_newApp_Click"/>
+        <Button x:Name="newPlaylist_newWebpage" Content="New Web Page" Grid.Column="1" HorizontalAlignment="Left" Margin="215,130,0,0" Grid.Row="1" VerticalAlignment="Top" Width="156" FontFamily="Candara" FontSize="18" Click="NewPlaylist_newWebpage_Click"/>
+        <TextBlock x:Name="newPlaylist_filter" Grid.Column="1" HorizontalAlignment="Left" Margin="10,175,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Filters:" VerticalAlignment="Top" FontSize="16" FontFamily="Candara"/>
+        <ComboBox x:Name="newPlaylist_filter1" Grid.Column="1" HorizontalAlignment="Left" Margin="78,199,0,0" Grid.Row="1" VerticalAlignment="Top" Width="120">
             <ComboBoxItem IsSelected="True" Content="All"/>
             <ComboBoxItem Content="Applications"/>
             <ComboBoxItem Content="Web Pages"/>
         </ComboBox>
-        <ComboBox Grid.Column="1" HorizontalAlignment="Left" Margin="236.4,190,0,0" Grid.Row="1" VerticalAlignment="Top" Width="74">
+        <ComboBox x:Name="newPlaylist_filter2" Grid.Column="1" HorizontalAlignment="Left" Margin="236,199,0,0" Grid.Row="1" VerticalAlignment="Top" Width="74">
             <ComboBoxItem IsSelected="True" Content="Newest"/>
             <ComboBoxItem Content="Oldest"/>
             <ComboBoxItem Content="A -> Z"/>
             <ComboBoxItem Content="Z -> A"/>
         </ComboBox>
-
+        <ScrollViewer x:Name="newPlaylist_scrollList" HorizontalAlignment="Left" Background="AliceBlue" VerticalAlignment="Top"  HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto" Grid.Row="1" Margin="10,258,-768,-528" Grid.Column="1" Height="650" Width="1300"/>
     </Grid>
 </Window>

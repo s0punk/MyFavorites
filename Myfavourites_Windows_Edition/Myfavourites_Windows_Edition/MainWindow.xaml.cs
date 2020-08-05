@@ -13,37 +13,36 @@ using System.Windows.Input;
 namespace Myfavourites_Windows_Edition {
     public partial class MainWindow : Window {
        // private List<Playlist> playlists;
-        private List<SystemApplication> systemApps;
-        private List<SteamGame> steamGames;
-        // private Playlist selectedPlaylist;
+        private static List<SystemApplication> systemApps;
+        private static List<SteamGame> steamGames;
+
+        private static string[] publisherBlacklist;
 
         private static List<UIElement> startPage;
+        private static List<UIElement> playlistPage;
 
         private string langage = "EN";
-        private static List<RoutedCommand> shortCuts = new List<RoutedCommand>();
+
+        private static StackPanel listElement;
 
         public MainWindow() {
             InitializeComponent();
             InitializeMenu();
 
-            SetShortCuts();
             SetStartPage();
-            SetStartPageState(false); // Dev purposes -- remove this line when all page's designs are done.
+            SetPlaylistPage();
+
+            SetPageState(startPage, false); // Dev purposes -- remove this line when all page's designs are done. // all pages set to false except startpage
+            SetPageState(playlistPage, true); 
 
             startPage_linkNewPlaylist.PreviewMouseDown += NewPlaylist_Click;
             startPage_linkLoadPlaylist.PreviewMouseDown += OpenPlaylist_Click;
             startPage_linkImportPlaylist.PreviewMouseDown += Import_Click;
-        }
 
-        private void SetShortCuts() {
-            CreateShortCut(0, 47, 2, 4, DeleteAll_Click);
-            CreateShortCut(1, 62, 2, 0, Save_Click);
-            CreateShortCut(2, 62, 2, 4, SaveAs_Click);
-            CreateShortCut(3, 59, 2, 0, Print_Click);
-            CreateShortCut(4, 69, 2, 0, Undo_Click);
-            CreateShortCut(5, 68, 2, 0, Redo_Click);
-            CreateShortCut(6, 67, 2, 0, Copy_Click);
-            CreateShortCut(7, 65, 2, 0, Paste_Click);
+            publisherBlacklist = File.ReadAllLines("Details\\Publisher_Blacklist.txt");
+
+            //If firsttimeuse else loadApps();
+            GetSystemApplication();
         }
 
         private void SetStartPage() {
@@ -57,20 +56,35 @@ namespace Myfavourites_Windows_Edition {
             startPage.Add(startPage_linkImportPlaylist);
         }
 
-        private static void SetStartPageState(bool state) {
-            foreach (UIElement element in startPage) {
+        private void SetPlaylistPage() {
+            playlistPage = new List<UIElement>();
+
+            playlistPage.Add(newPlaylist_name);
+            playlistPage.Add(newPlaylist_checkbox);
+            playlistPage.Add(newPlaylist_play);
+            playlistPage.Add(newPlaylist_newApp);
+            playlistPage.Add(newPlaylist_newWebpage);
+            playlistPage.Add(newPlaylist_filter);
+            playlistPage.Add(newPlaylist_filter1);
+            playlistPage.Add(newPlaylist_filter2);
+            playlistPage.Add(newPlaylist_scrollList);
+
+            listElement = new StackPanel();
+            Thickness margin = listElement.Margin;
+            margin.Left = 10;
+            listElement.Margin = margin;
+
+            newPlaylist_scrollList.Content = listElement;
+        }
+
+        private static void SetPageState(List<UIElement> page, bool state) {
+            foreach (UIElement element in page) {
                 if (state)
                     element.Visibility = Visibility.Visible;
                 else
                     element.Visibility = Visibility.Collapsed;
                 element.IsEnabled = state;
             }
-        }
-
-        private void CreateShortCut(int index, int key, int modifier1, int modifier2, ExecutedRoutedEventHandler handler) {
-            shortCuts.Add(new RoutedCommand());
-            shortCuts[index].InputGestures.Add(new KeyGesture((Key)key, (ModifierKeys)modifier1 | (ModifierKeys)modifier2));
-            CommandBindings.Add(new CommandBinding(shortCuts[index], handler));
         }
 
         private void ButtonOpenMenu_Click(object sender, RoutedEventArgs e) {
@@ -96,27 +110,21 @@ namespace Myfavourites_Windows_Edition {
             }
         }
 
+        private void NewPlaylist_newApp_Click(object sender, RoutedEventArgs e) {
+            listElement.Children.Add(new PlaylistElement("Application"));
+        }
+
+        private void NewPlaylist_newWebpage_Click(object sender, RoutedEventArgs e) {
+            listElement.Children.Add(new PlaylistElement("Web"));
+        }
+
         private void InitializeMenu() {
             List<MenuButton> fileList = new List<MenuButton>();
             fileList.Add(new MenuButton("New Playlist"));
-            fileList.Add(new MenuButton("Open Playlist"));
-            fileList.Add(new MenuButton("Edit Playlist"));
-            fileList.Add(new MenuButton("Delete All         Ctrl+Shift+D"));
-            fileList.Add(new MenuButton("Save                   Ctrl+S"));
-            fileList.Add(new MenuButton("Save As              Ctrl+Shift+S"));
+            fileList.Add(new MenuButton("Open Playlist")); // open dashboard    
             fileList.Add(new MenuButton("Import Playlist"));
             fileList.Add(new MenuButton("Export Playlist"));
-            fileList.Add(new MenuButton("Print                   Ctrl+P"));
-            fileList.Add(new MenuButton("Exit"));
             ItemMenu fileMenu = new ItemMenu("Files", fileList, PackIconKind.File);
-
-            List<MenuButton> editList = new List<MenuButton>();
-            editList.Add(new MenuButton("Undo                 Ctrl+Z"));
-            editList.Add(new MenuButton("Redo                 Ctrl+Y"));
-            editList.Add(new MenuButton("Copy                 Ctrl+C"));
-            editList.Add(new MenuButton("Cut                    Ctrl+X"));
-            editList.Add(new MenuButton("Paste                Ctrl+V"));
-            ItemMenu editMenu = new ItemMenu("Edit", editList, PackIconKind.Edit);
 
             List<MenuButton> settingsList = new List<MenuButton>();
             settingsList.Add(new MenuButton("General"));
@@ -132,14 +140,13 @@ namespace Myfavourites_Windows_Edition {
 
             Menu.Children.Add(new UserControlMenuItem(dashboard));
             Menu.Children.Add(new UserControlMenuItem(fileMenu));
-            Menu.Children.Add(new UserControlMenuItem(editMenu));
             Menu.Children.Add(new UserControlMenuItem(settingsMenu));
             Menu.Children.Add(new UserControlMenuItem(help));
             Menu.Children.Add(new UserControlMenuItem(supportMenu));
         }
 
         public static void Help_Click(object sender, EventArgs e) {
-
+            
         }
 
         public static void DashBoard_Click(object sender, EventArgs e) {
@@ -147,8 +154,8 @@ namespace Myfavourites_Windows_Edition {
         }
 
         public static void NewPlaylist_Click(object sender, EventArgs e) {
-            SetStartPageState(false);
-
+            SetPageState(startPage, false);
+            SetPageState(playlistPage, true);
         }
 
         public static void OpenPlaylist_Click(object sender, EventArgs e) {
@@ -217,12 +224,27 @@ namespace Myfavourites_Windows_Edition {
 
         private void GetSystemApplication() {
             systemApps = new List<SystemApplication>();
-            string registry_key = @"SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Uninstall";
+            string registry_key = @"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall";
             using (RegistryKey key = Registry.LocalMachine.OpenSubKey(registry_key))
                 foreach (string subkey_name in key.GetSubKeyNames())
                     using (RegistryKey subkey = key.OpenSubKey(subkey_name)) {
                         try {
-                            systemApps.Add(new SystemApplication((subkey.GetValue("DisplayName")).ToString()));
+                            bool blacklisted = false;
+                            foreach(string publisher in publisherBlacklist)
+                                if((subkey.GetValue("Publisher")).ToString() == publisher) {
+                                    blacklisted = true;
+                                    break;
+                                }
+
+                            if(!blacklisted)
+                                systemApps.Add(new SystemApplication((subkey.GetValue("DisplayName")).ToString(), (subkey.GetValue("Publisher")).ToString()));
+
+                            //Sort By alphabetical order and remove duplicates from systemApps list.
+                            systemApps.Sort((i, j) => i.Name.CompareTo(j.Name));
+                            systemApps = systemApps.GroupBy(x => x.Name).Select(x => x.First()).ToList();
+
+                            //Enregistrer dans le fichier
+
                         }
                         catch (NullReferenceException) {
                         }
@@ -259,15 +281,32 @@ namespace Myfavourites_Windows_Edition {
                         steamGames.Add(game);
                     }
                 }
+                steamGames.Sort((i, j) => i.Name.CompareTo(j.Name));
+                steamGames = steamGames.GroupBy(x => x.Name).Select(x => x.First()).ToList();
             }
         }
 
-        private string Langage {
+        public string Langage {
             get { return langage; }
             set {
                 if (value == "En" || value == "FR")
                     langage = value;
             }
+        }
+
+        public static List<SystemApplication> SystemApps {
+            get { return systemApps; }
+            set { systemApps = value; }
+        }
+
+        public static List<SteamGame> SteamGames {
+            get { return steamGames; }
+            set { steamGames = value; }
+        }
+
+        public static StackPanel ListElement {
+            get { return listElement; }
+            set { listElement = value; }
         }
     }
 }
