@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 C:\Users\Simon-Olivier\Prog\MyFavorites-Windows\Myfavourites_Windows_Edition\Myfavourites_Windows_Edition\bin\Debug\Myfavourites_Windows_Edition.exe.config
 C:\Users\Simon-Olivier\Prog\MyFavorites-Windows\Myfavourites_Windows_Edition\Myfavourites_Windows_Edition\bin\Debug\Myfavourites_Windows_Edition.exe
 C:\Users\Simon-Olivier\Prog\MyFavorites-Windows\Myfavourites_Windows_Edition\Myfavourites_Windows_Edition\bin\Debug\Myfavourites_Windows_Edition.pdb
@@ -82,3 +83,13 @@ C:\Users\Simon-Olivier\Prog\C#\MyFavorites-Windows\Myfavourites_Windows_Edition\
 C:\Users\Simon-Olivier\Prog\C#\MyFavorites-Windows\Myfavourites_Windows_Edition\Myfavourites_Windows_Edition\obj\Debug\Myfavourites_Windows_Edition.csproj.CopyComplete
 C:\Users\Simon-Olivier\Prog\C#\MyFavorites-Windows\Myfavourites_Windows_Edition\Myfavourites_Windows_Edition\obj\Debug\Myfavourites_Windows_Edition.exe
 C:\Users\Simon-Olivier\Prog\C#\MyFavorites-Windows\Myfavourites_Windows_Edition\Myfavourites_Windows_Edition\obj\Debug\Myfavourites_Windows_Edition.pdb
+=======
+C:\Users\Sopunkrock1984-PC\Documents\GitHub\MyFavorites\Myfavourites_Windows_Edition\Myfavourites_Windows_Edition\obj\Debug\Myfavourites_Windows_Edition.csprojAssemblyReference.cache
+C:\Users\Sopunkrock1984-PC\Documents\GitHub\MyFavorites\Myfavourites_Windows_Edition\Myfavourites_Windows_Edition\obj\Debug\MainWindow.baml
+C:\Users\Sopunkrock1984-PC\Documents\GitHub\MyFavorites\Myfavourites_Windows_Edition\Myfavourites_Windows_Edition\obj\Debug\UserControllerMenuItem.baml
+C:\Users\Sopunkrock1984-PC\Documents\GitHub\MyFavorites\Myfavourites_Windows_Edition\Myfavourites_Windows_Edition\obj\Debug\MainWindow.g.cs
+C:\Users\Sopunkrock1984-PC\Documents\GitHub\MyFavorites\Myfavourites_Windows_Edition\Myfavourites_Windows_Edition\obj\Debug\UserControllerMenuItem.g.cs
+C:\Users\Sopunkrock1984-PC\Documents\GitHub\MyFavorites\Myfavourites_Windows_Edition\Myfavourites_Windows_Edition\obj\Debug\App.g.cs
+C:\Users\Sopunkrock1984-PC\Documents\GitHub\MyFavorites\Myfavourites_Windows_Edition\Myfavourites_Windows_Edition\obj\Debug\Myfavourites_Windows_Edition_MarkupCompile.cache
+C:\Users\Sopunkrock1984-PC\Documents\GitHub\MyFavorites\Myfavourites_Windows_Edition\Myfavourites_Windows_Edition\obj\Debug\Myfavourites_Windows_Edition_MarkupCompile.lref
+>>>>>>> Stashed changes
