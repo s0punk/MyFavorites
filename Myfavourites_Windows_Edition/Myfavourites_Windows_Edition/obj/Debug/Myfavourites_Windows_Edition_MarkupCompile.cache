@@ -4,32 +4,17 @@
 winexe
 C#
 .cs
-<<<<<<< Updated upstream
-C:\Users\Simon-Olivier\Prog\C#\MyFavorites-Windows\Myfavourites_Windows_Edition\Myfavourites_Windows_Edition\obj\Debug\
-=======
-C:\Users\Sopunkrock1984-PC\Documents\GitHub\MyFavorites\Myfavourites_Windows_Edition\Myfavourites_Windows_Edition\obj\Debug\
->>>>>>> Stashed changes
+C:\Users\Simon-Olivier\OneDrive\Documents\GitHub\MyFavorites\Myfavourites_Windows_Edition\Myfavourites_Windows_Edition\obj\Debug\
 Myfavourites_Windows_Edition
 none
 false
 DEBUG;TRACE
-<<<<<<< Updated upstream
-C:\Users\Simon-Olivier\Prog\C#\MyFavorites-Windows\Myfavourites_Windows_Edition\Myfavourites_Windows_Edition\App.xaml
+C:\Users\Simon-Olivier\OneDrive\Documents\GitHub\MyFavorites\Myfavourites_Windows_Edition\Myfavourites_Windows_Edition\App.xaml
 4840741643
 
 14-1971723783
-161237920952
+17-1828743371
 MainWindow.xaml;MessageBox.xaml;PlaylistElement.xaml;UserControllerMenuItem.xaml;
 
 False
-=======
-C:\Users\Sopunkrock1984-PC\Documents\GitHub\MyFavorites\Myfavourites_Windows_Edition\Myfavourites_Windows_Edition\App.xaml
-2-1382567122
-
-12-2021695847
-161950054628
-MainWindow.xaml;UserControllerMenuItem.xaml;
-
-True
->>>>>>> Stashed changes
 

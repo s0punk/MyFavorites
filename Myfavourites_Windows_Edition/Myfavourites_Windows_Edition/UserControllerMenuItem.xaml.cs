@@ -33,12 +33,6 @@ namespace DropDownMenu {
                 case "Delete All         Ctrl+Shift+D":
                     MainWindow.DeleteAll_Click(null, null);
                     break;
-                case "Save                   Ctrl+S":
-                    MainWindow.Save_Click(null, null);
-                    break;
-                case "Save As              Ctrl+Shift+S":
-                    MainWindow.SaveAs_Click(null, null);
-                    break;
                 case "Import Playlist":
                     MainWindow.Import_Click(null, null);
                     break;
@@ -50,21 +44,6 @@ namespace DropDownMenu {
                     break;
                 case "Exit":
                     MainWindow.Exit_Click(null, null);
-                    break;
-                case "Undo                 Ctrl+Z":
-                    MainWindow.Undo_Click(null, null);
-                    break;
-                case "Redo                 Ctrl+Y":
-                    MainWindow.Redo_Click(null, null);
-                    break;
-                case "Copy                 Ctrl+C":
-                    MainWindow.Copy_Click(null, null);
-                    break;
-                case "Cut                    Ctrl+X":
-                    MainWindow.Cut_Click(null, null);
-                    break;
-                case "Paste                Ctrl+V":
-                    MainWindow.Paste_Click(null, null);
                     break;
                 case "General":
                     MainWindow.General_Click(null, null);

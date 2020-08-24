@@ -1,5 +1,4 @@
-﻿using Microsoft.Win32;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Windows;
@@ -9,6 +8,9 @@ using MaterialDesignThemes.Wpf;
 using System.Windows.Controls;
 using DropDownMenu;
 using System.Windows.Input;
+using System.Management.Automation;
+using System.Management.Automation.Runspaces;
+using System.Collections.ObjectModel;
 
 namespace Myfavourites_Windows_Edition {
     public partial class MainWindow : Window {
@@ -170,14 +172,6 @@ namespace Myfavourites_Windows_Edition {
             Console.WriteLine("Deleting all...");
         }
 
-        public static void Save_Click(object sender, EventArgs e) {
-            
-        }
-
-        public static void SaveAs_Click(object sender, EventArgs e) {
-            
-        }
-
         public static void Import_Click(object sender, EventArgs e) {
 
         }
@@ -194,26 +188,6 @@ namespace Myfavourites_Windows_Edition {
             Application.Current.Shutdown();
         }
 
-        public static void Undo_Click(object sender, EventArgs e) {
-
-        }
-
-        public static void Redo_Click(object sender, EventArgs e) {
-
-        }
-
-        public static void Copy_Click(object sender, EventArgs e) {
-
-        }
-
-        public static void Cut_Click(object sender, EventArgs e) {
-
-        }
-
-        public static void Paste_Click(object sender, EventArgs e) {
-
-        }
-
         public static void General_Click(object sender, EventArgs e) {
 
         }
@@ -223,32 +197,22 @@ namespace Myfavourites_Windows_Edition {
         }
 
         private void GetSystemApplication() {
+            string command = "Get-ItemProperty HKLM:\\Software\\Wow6432Node\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\*" +
+                " | Select-Object DisplayName, DisplayVersion, Publisher, InstallDate | Format-Table –AutoSize > Details\\Installed_Programms.txt";
             systemApps = new List<SystemApplication>();
-            string registry_key = @"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall";
-            using (RegistryKey key = Registry.LocalMachine.OpenSubKey(registry_key))
-                foreach (string subkey_name in key.GetSubKeyNames())
-                    using (RegistryKey subkey = key.OpenSubKey(subkey_name)) {
-                        try {
-                            bool blacklisted = false;
-                            foreach(string publisher in publisherBlacklist)
-                                if((subkey.GetValue("Publisher")).ToString() == publisher) {
-                                    blacklisted = true;
-                                    break;
-                                }
 
-                            if(!blacklisted)
-                                systemApps.Add(new SystemApplication((subkey.GetValue("DisplayName")).ToString(), (subkey.GetValue("Publisher")).ToString()));
+            Runspace runspace = RunspaceFactory.CreateRunspace();
+            runspace.Open();
+            Pipeline pipeline = runspace.CreatePipeline();
+            pipeline.Commands.AddScript(command);
+            Collection<PSObject> results = pipeline.Invoke();
+            runspace.Close();
 
-                            //Sort By alphabetical order and remove duplicates from systemApps list.
-                            systemApps.Sort((i, j) => i.Name.CompareTo(j.Name));
-                            systemApps = systemApps.GroupBy(x => x.Name).Select(x => x.First()).ToList();
+            //Lire le fichier et traiter les informations
+            //Remplir la list d'application
+            //Créer un fichier qui contient la liste des applications traités
 
-                            //Enregistrer dans le fichier
-
-                        }
-                        catch (NullReferenceException) {
-                        }
-                    }
+            
             GetSteamGames();
         }
 
