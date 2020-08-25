@@ -1,0 +1,102 @@
+DisplayName    : ColorPic
+DisplayVersion : 4.1
+Publisher      : Iconico
+
+
+
+DisplayName    : Google Chrome
+DisplayVersion : 84.0.4147.135
+Publisher      : Google LLC
+
+
+
+DisplayName    : Google Update Helper
+DisplayVersion : 1.3.35.451
+Publisher      : Google LLC
+
+
+
+DisplayName    : Gyazo 4.1.2.0
+DisplayVersion : 
+Publisher      : Nota Inc.
+
+
+
+DisplayName    : Minecraft Launcher
+DisplayVersion : 1.0.0.0
+Publisher      : Mojang
+
+
+
+DisplayName    : Mozilla Firefox 72.0.2 (x86 en-US)
+DisplayVersion : 72.0.2
+Publisher      : Mozilla
+
+
+
+DisplayName    : NordVPN
+DisplayVersion : 6.19.6
+Publisher      : NordVPN
+
+
+
+DisplayName    : NordVPN network TAP
+DisplayVersion : 1.0.1
+Publisher      : NordVPN
+
+
+
+DisplayName    : Notepad++ (32-bit x86)
+DisplayVersion : 7.8.7
+Publisher      : Notepad++ Team
+
+
+
+DisplayName    : OBS Studio
+DisplayVersion : 25.0.8
+Publisher      : OBS Project
+
+
+
+DisplayName    : Project64 version 2.3.2.202
+DisplayVersion : 2.3.2.202
+Publisher      : 
+
+
+
+DisplayName    : PyCharm Community Edition 2020.1.1
+DisplayVersion : 201.7223.92
+Publisher      : JetBrains s.r.o.
+
+
+
+DisplayName    : Razer Synapse
+DisplayVersion : 3.5.0730.072314
+Publisher      : Razer Inc.
+
+
+
+DisplayName    : Steam
+DisplayVersion : 2.10.91.91
+Publisher      : Valve Corporation
+
+
+
+DisplayName    : Unity
+DisplayVersion : 2018.4.15f1
+Publisher      : Unity Technologies ApS
+
+
+
+DisplayName    : Windows SDK EULA
+DisplayVersion : 10.1.18362.1
+Publisher      : Microsoft Corporations
+
+
+
+DisplayName    : XSplit Gamecaster
+DisplayVersion : 2.8.1607.2032
+Publisher      : SplitmediaLabs
+
+
+

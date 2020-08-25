@@ -9,14 +9,13 @@ using System.Windows.Controls;
 using DropDownMenu;
 using System.Windows.Input;
 using System.Management.Automation;
-using System.Management.Automation.Runspaces;
-using System.Collections.ObjectModel;
 
 namespace Myfavourites_Windows_Edition {
     public partial class MainWindow : Window {
        // private List<Playlist> playlists;
         private static List<SystemApplication> systemApps;
         private static List<SteamGame> steamGames;
+        private static List<WebPage> webPages;
 
         private static string[] publisherBlacklist;
 
@@ -24,12 +23,15 @@ namespace Myfavourites_Windows_Edition {
         private static List<UIElement> playlistPage;
 
         private string langage = "EN";
+        private bool firstLoad = true;
 
         private static StackPanel listElement;
 
         public MainWindow() {
             InitializeComponent();
             InitializeMenu();
+
+            GetConfig();
 
             SetStartPage();
             SetPlaylistPage();
@@ -43,8 +45,27 @@ namespace Myfavourites_Windows_Edition {
 
             publisherBlacklist = File.ReadAllLines("Details\\Publisher_Blacklist.txt");
 
-            //If firsttimeuse else loadApps();
-            GetSystemApplication();
+            if(FirstLoad)
+                GetSystemApplication();
+            else {
+
+            }
+        }
+
+        private void GetConfig() {
+            string[] content = File.ReadAllLines("General\\Config.cfg");
+
+            try {
+                FirstLoad = content[0] == "FALSE" ? false : true;
+                Langage = content[1];
+            }
+            catch(IndexOutOfRangeException) {
+                LoadDefaultConfig();
+            }
+        }
+
+        private void LoadDefaultConfig() {
+
         }
 
         private void SetStartPage() {
@@ -198,36 +219,92 @@ namespace Myfavourites_Windows_Edition {
 
         private void GetSystemApplication() {
             string command = "Get-ItemProperty HKLM:\\Software\\Wow6432Node\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\*" +
-                " | Select-Object DisplayName, DisplayVersion, Publisher, InstallDate | Format-Table –AutoSize > Details\\Installed_Programms.txt";
+                " | Select-Object DisplayName, DisplayVersion, Publisher | Format-List > Details\\Installed_Programs.txt";
             systemApps = new List<SystemApplication>();
 
-            Runspace runspace = RunspaceFactory.CreateRunspace();
-            runspace.Open();
-            Pipeline pipeline = runspace.CreatePipeline();
-            pipeline.Commands.AddScript(command);
-            Collection<PSObject> results = pipeline.Invoke();
-            runspace.Close();
+            PowerShell ps = PowerShell.Create();
+            ps.AddScript(command);
+            ps.Invoke();
 
-            //Lire le fichier et traiter les informations
-            //Remplir la list d'application
-            //Créer un fichier qui contient la liste des applications traités
+            systemApps = new List<SystemApplication>();
+            TreatApps("Details\\Installed_Programs.txt");
+            SaveContent("Details\\Treated_Programs.txt");
 
-            
             GetSteamGames();
+            SaveContent("Details\\Installed_SteamGames.txt", true, false);
+        }
+
+        private void SaveContent(string file, bool isGame = false, bool isWeb = false) {
+            List<string> content = new List<string>();
+
+            if(isGame)
+                foreach(SteamGame game in steamGames) {
+                    content.Add("DisplayName    : " + game.Name);
+                    content.Add("SteamID        : " + game.AppID);
+                    content.Add("\n\n");
+                }
+            else if(isWeb)
+                foreach(WebPage web in webPages) {
+                    content.Add("DisplayName    : " + web.Name);
+                    content.Add("URL            : " + web.Url);
+                    content.Add("\n\n");
+                }
+            else
+                foreach(SystemApplication app in systemApps) {
+                    content.Add("DisplayName    : " + app.Name);
+                    content.Add("DisplayVersion : " + app.Version);
+                    content.Add("Publisher      : " + app.Publisher);
+                    content.Add("\n\n");
+                }
+
+            File.WriteAllLines(file, content.ToArray());
+        }
+
+        private void TreatApps(string file) {
+            if (!File.Exists(file))
+                return;
+
+            string[] content = File.ReadAllLines(file);
+
+            for (int i = 0; i < content.Length - 1; i++) {
+                int index = content[i].IndexOf(" ");
+                if(index > 0)
+                    if(content[i].Substring(0, index) == "DisplayName") {
+                        SystemApplication app = new SystemApplication();
+                        int start = content[i].IndexOf(":") + 2;
+                        app.Name = content[i].Substring(start);
+
+                        start = content[i + 1].IndexOf(":") + 2;
+                        app.Version = content[i + 1].Substring(start);
+
+                        start = content[i + 2].IndexOf(":") + 2;
+                        app.Publisher = content[i + 2].Substring(start);
+
+                        if(!string.IsNullOrWhiteSpace(app.Name)) {
+                            bool blacklisted = false;
+                            foreach (string publisher in publisherBlacklist)
+                                if(app.Publisher == publisher) {
+                                    blacklisted = true;
+                                    break;
+                                }
+                            if (!blacklisted)
+                                systemApps.Add(app);
+                        }
+                    }
+            }
+            systemApps.Sort((i, j) => i.Name.CompareTo(j.Name));
+            systemApps = systemApps.GroupBy(x => x.Name).Select(x => x.First()).ToList();
         }
 
         private void GetSteamGames() {
             string path = "C:\\Program Files (x86)\\Steam\\steamapps\\libraryfolders.vdf";
             DirectoryInfo taskDirectory;
-            int counter = 0;
 
             if (File.Exists(path)) {
                 steamGames = new List<SteamGame>();
                 string[] fileContent = File.ReadAllLines(path);
 
-                foreach (string line in fileContent)
-                    counter++;
-                for (int i = 4; i < counter - 1; i++) {
+                for (int i = 4; i < fileContent.Length - 1; i++) {
                     fileContent[i] = fileContent[i].Substring(6 + i.ToString().Length);
                     fileContent[i] = fileContent[i].Substring(0, fileContent[i].Length - 1);
                     fileContent[i] += "\\steamapps\\";
@@ -256,6 +333,11 @@ namespace Myfavourites_Windows_Edition {
                 if (value == "En" || value == "FR")
                     langage = value;
             }
+        }
+
+        public bool FirstLoad {
+            get { return firstLoad; }
+            set { firstLoad = value; }
         }
 
         public static List<SystemApplication> SystemApps {
