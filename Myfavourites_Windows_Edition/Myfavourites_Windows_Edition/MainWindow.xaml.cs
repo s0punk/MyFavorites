@@ -45,11 +45,76 @@ namespace Myfavourites_Windows_Edition {
 
             publisherBlacklist = File.ReadAllLines("Details\\Publisher_Blacklist.txt");
 
-            if(FirstLoad)
+            if (FirstLoad)
                 GetSystemApplication();
             else {
-
+                LoadApps("Details\\Installed_Programs.txt");
+                LoadGames("Details\\Installed_SteamGames.txt");
             }
+        }
+
+        private void LoadApps(string file) {
+            string[] content = File.ReadAllLines(file);
+
+            if (!File.Exists(file))
+                return;
+
+            systemApps = new List<SystemApplication>();
+            for (int i = 0; i < content.Length - 1; i++) {
+                int index = content[i].IndexOf(" ");
+                if (index > 0)
+                    if (content[i].Substring(0, index) == "DisplayName") {
+                        SystemApplication app = new SystemApplication();
+                        int start = content[i].IndexOf(":") + 2;
+                        app.Name = content[i].Substring(start);
+
+                        start = content[i + 1].IndexOf(":") + 2;
+                        app.Version = content[i + 1].Substring(start);
+
+                        start = content[i + 2].IndexOf(":") + 2;
+                        app.Publisher = content[i + 2].Substring(start);
+
+                        if (!string.IsNullOrWhiteSpace(app.Name)) {
+                            bool blacklisted = false;
+                            foreach (string publisher in publisherBlacklist)
+                                if (app.Publisher == publisher) {
+                                    blacklisted = true;
+                                    break;
+                                }
+                            if (!blacklisted)
+                                systemApps.Add(app);
+                        }
+                    }
+            }
+            systemApps.Sort((i, j) => i.Name.CompareTo(j.Name));
+            systemApps = systemApps.GroupBy(x => x.Name).Select(x => x.First()).ToList();
+        }
+
+        private void LoadGames(string file) {
+            string[] content = File.ReadAllLines(file);
+
+            if (!File.Exists(file))
+                return;
+
+            steamGames = new List<SteamGame>();
+            for (int i = 0; i < content.Length - 1; i++) {
+                int index = content[i].IndexOf(" ");
+                if (index > 0)
+                    if (content[i].Substring(0, index) == "DisplayName") {
+                        SteamGame app = new SteamGame();
+                        int start = content[i].IndexOf(":") + 2;
+                        app.Name = content[i].Substring(start);
+
+                        start = content[i + 1].IndexOf(":") + 2;
+                        app.AppID = content[i + 1].Substring(start);
+
+                        if (!string.IsNullOrWhiteSpace(app.Name)) {
+                            steamGames.Add(app);
+                        }
+                    }
+            }
+            steamGames.Sort((i, j) => i.Name.CompareTo(j.Name));
+            steamGames = steamGames.GroupBy(x => x.Name).Select(x => x.First()).ToList();
         }
 
         private void GetConfig() {
@@ -65,7 +130,16 @@ namespace Myfavourites_Windows_Edition {
         }
 
         private void LoadDefaultConfig() {
-
+            string[] content = File.ReadAllLines("General\\Default_Config.cfg");
+            
+            try {
+                FirstLoad = content[0] == "FALSE" ? false : true;
+                Langage = content[1];
+            }
+            catch(IndexOutOfRangeException) {
+                FirstLoad = true;
+                Langage = "EN";
+            }
         }
 
         private void SetStartPage() {
