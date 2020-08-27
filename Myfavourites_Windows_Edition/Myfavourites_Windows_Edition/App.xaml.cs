@@ -11,5 +11,8 @@ namespace Myfavourites_Windows_Edition {
     /// Logique d'interaction pour App.xaml
     /// </summary>
     public partial class App : Application {
+        public void App_Exit(object sender, ExitEventArgs e) {
+            //update all
+        }
     }
 }

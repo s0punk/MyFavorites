@@ -30,9 +30,6 @@ namespace DropDownMenu {
                 case "Edit Playlist":
                     MainWindow.EditPlaylist_Click(null, null);
                     break;
-                case "Delete All         Ctrl+Shift+D":
-                    MainWindow.DeleteAll_Click(null, null);
-                    break;
                 case "Import Playlist":
                     MainWindow.Import_Click(null, null);
                     break;
