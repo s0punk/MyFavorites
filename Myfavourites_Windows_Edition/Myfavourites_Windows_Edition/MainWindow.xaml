@@ -5,10 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
-        Title="My Favourites" Height="450" Width="800" WindowState="Maximized"
+        x:Name="window"
+        Title="My Favourites" WindowState="Maximized"
+        Height="{Binding SystemParameters.PrimaryScreenHeight}" 
+        Width="{Binding SystemParameters.PrimaryScreenWidth}"
         Icon="/Assets/logo.ico">
     <Window.Background>
-        <ImageBrush ImageSource="/Assets/App_Background.png"/>
+        <ImageBrush x:Name="backgroundImage" ImageSource="/Assets/App_Background.png"/>
     </Window.Background>
 
 

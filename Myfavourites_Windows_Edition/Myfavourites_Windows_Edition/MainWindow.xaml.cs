@@ -9,9 +9,14 @@ using System.Windows.Controls;
 using DropDownMenu;
 using System.Windows.Input;
 using System.Management.Automation;
+using System.Drawing;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
 
 namespace Myfavourites_Windows_Edition {
     public partial class MainWindow : Window {
+        private static MainWindow instance;
+
        // private List<Playlist> playlists;
         private static List<SystemApplication> systemApps;
         private static List<SteamGame> steamGames;
@@ -22,8 +27,10 @@ namespace Myfavourites_Windows_Edition {
         private static List<UIElement> startPage;
         private static List<UIElement> playlistPage;
 
+        // --- CONFIG ELEMENT --------
         private string langage = "EN";
         private bool firstLoad = true;
+        // ---------------------------
 
         private static StackPanel listElement;
 
@@ -31,13 +38,15 @@ namespace Myfavourites_Windows_Edition {
             InitializeComponent();
             InitializeMenu();
 
+            Instance = this;
+
             GetConfig();
 
             SetStartPage();
             SetPlaylistPage();
 
-            SetPageState(startPage, false); // Dev purposes -- remove this line when all page's designs are done. // all pages set to false except startpage
-            SetPageState(playlistPage, true); 
+            SetPageState(startPage, true);
+            SetPageState(playlistPage, false);
 
             startPage_linkNewPlaylist.PreviewMouseDown += NewPlaylist_Click;
             startPage_linkLoadPlaylist.PreviewMouseDown += OpenPlaylist_Click;
@@ -129,6 +138,11 @@ namespace Myfavourites_Windows_Edition {
             }
         }
 
+        private void UpdateConfig() {
+            //Check if the config has changed
+            //if so, rewrite it.
+        }
+
         private void LoadDefaultConfig() {
             string[] content = File.ReadAllLines("General\\Default_Config.cfg");
             
@@ -217,8 +231,7 @@ namespace Myfavourites_Windows_Edition {
 
         private void InitializeMenu() {
             List<MenuButton> fileList = new List<MenuButton>();
-            fileList.Add(new MenuButton("New Playlist"));
-            fileList.Add(new MenuButton("Open Playlist")); // open dashboard    
+            fileList.Add(new MenuButton("New Playlist"));   
             fileList.Add(new MenuButton("Import Playlist"));
             fileList.Add(new MenuButton("Export Playlist"));
             ItemMenu fileMenu = new ItemMenu("Files", fileList, PackIconKind.File);
@@ -243,40 +256,30 @@ namespace Myfavourites_Windows_Edition {
         }
 
         public static void Help_Click(object sender, EventArgs e) {
-            
         }
 
         public static void DashBoard_Click(object sender, EventArgs e) {
-
         }
 
         public static void NewPlaylist_Click(object sender, EventArgs e) {
             SetPageState(startPage, false);
+            instance.window.backgroundImage.ImageSource = new BitmapImage(new Uri("..\\Assets\\White_Background.png", UriKind.Relative));
             SetPageState(playlistPage, true);
         }
 
         public static void OpenPlaylist_Click(object sender, EventArgs e) {
-
         }
 
         public static void EditPlaylist_Click(object sender, EventArgs e) {
-
-        }
-
-        public static void DeleteAll_Click(object sender, EventArgs e) {
-            Console.WriteLine("Deleting all...");
         }
 
         public static void Import_Click(object sender, EventArgs e) {
-
         }
 
         public static void Export_Click(object sender, EventArgs e) {
-
         }
 
         public static void Print_Click(object sender, EventArgs e) {
-
         }
 
         public static void Exit_Click(object sender, EventArgs e) {
@@ -284,11 +287,9 @@ namespace Myfavourites_Windows_Edition {
         }
 
         public static void General_Click(object sender, EventArgs e) {
-
         }
 
         public static void Paypal_Click(object sender, EventArgs e) {
-
         }
 
         private void GetSystemApplication() {
@@ -306,6 +307,8 @@ namespace Myfavourites_Windows_Edition {
 
             GetSteamGames();
             SaveContent("Details\\Installed_SteamGames.txt", true, false);
+
+            FirstLoad = false;
         }
 
         private void SaveContent(string file, bool isGame = false, bool isWeb = false) {
@@ -399,6 +402,11 @@ namespace Myfavourites_Windows_Edition {
                 steamGames.Sort((i, j) => i.Name.CompareTo(j.Name));
                 steamGames = steamGames.GroupBy(x => x.Name).Select(x => x.First()).ToList();
             }
+        }
+
+        public MainWindow Instance {
+            get { return instance; }
+            set { instance = value; }
         }
 
         public string Langage {
