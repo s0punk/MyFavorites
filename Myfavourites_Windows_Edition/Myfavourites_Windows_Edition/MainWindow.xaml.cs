@@ -263,7 +263,7 @@ namespace Myfavourites_Windows_Edition {
 
         public static void NewPlaylist_Click(object sender, EventArgs e) {
             SetPageState(startPage, false);
-            instance.window.backgroundImage.ImageSource = new BitmapImage(new Uri("..\\Assets\\White_Background.png", UriKind.Relative));
+            instance.window.backgroundImage.ImageSource = new BitmapImage(new Uri("..\\..\\Assets\\White_Background.png", UriKind.Relative));
             SetPageState(playlistPage, true);
         }
 

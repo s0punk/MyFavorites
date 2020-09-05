@@ -13,6 +13,8 @@ To Do:
 
 	menu option that let you: see the apps that we detected, delete apps from MyFavorites, add apps to MyFavorites
 
+	make icons float when mouseHover (try putting icon inside transparent button and using the button's event)
+
 
 
 
